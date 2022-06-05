@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      internal_server_error: 'An error has occurred on the server. Please wait for a while before trying to access the site. If the error occurs again, please contact support. (Error code: %{error_id})'
+      parameter_missing_error: 'The required parameters are not included.'
+      record_not_found: 'The target item does not exist.'
+      unpermitted_parameter_error: 'Contains incorrect parameter type.'
