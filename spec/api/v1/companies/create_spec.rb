@@ -13,11 +13,11 @@ require 'api_helper'
         parameter :code, 'uniq code for company', type: :string, required: true
       end
 
-      context 'with 204 status' do
+      context 'with 200 status' do
         let(:code) { 'text-code' }
 
         example_request 'Creating a company' do
-          expect(status).to eq(204)
+          expect(status).to eq(200)
         end
       end
 

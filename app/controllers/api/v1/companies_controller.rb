@@ -1,12 +1,8 @@
 class Api::V1::CompaniesController < ApplicationController
 
+  # POST
   def create
-    company = Company.new(create_params)
-    if company.valid?
-      company.save!
-    else
-      render ModelInvalidError.to_response(company)
-    end
+    render CompanyCreator.new(params).call
   end
 
   private
