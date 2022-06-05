@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :companies, only: [:create]
+      resources :companies, only: [:create] do
+        resources :groups, only: [:create]
+      end
     end
   end
 
