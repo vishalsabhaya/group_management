@@ -6,20 +6,10 @@ class GroupCreator
     @params = params
   end
 
+  # Register group for specific company
   def call
     if company.nil?
-      return {
-        json: {
-          errors: [
-            {
-                "code": 404002,
-                "message": "Record not found",
-                "field": "company_id"
-            }
-        ]
-        },
-        status: 400
-      }
+      return raise ActiveRecord::RecordNotFound
     else
       group = company.groups.new(create_params)
       if group.valid?
@@ -28,6 +18,7 @@ class GroupCreator
           json: group
         }
       else
+        # return Error with 400
         return ModelInvalidError.to_response(group)
       end
     end
@@ -35,6 +26,7 @@ class GroupCreator
 
   private
 
+  # find out company which is already register
   def company
     Company.find_by(id: @params[:company_id])
   end
