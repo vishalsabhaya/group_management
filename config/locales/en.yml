@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  E0001: 'Exceeded user limit'
+  E0002: 'You should be over 18 years old.'
+
   errors:
     messages:
       internal_server_error: 'An error has occurred on the server. Please wait for a while before trying to access the site. If the error occurs again, please contact support. (Error code: %{error_id})'
