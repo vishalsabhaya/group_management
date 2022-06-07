@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :companies, only: [:create] do
+      resources :companies, only: [:create, :destroy] do
         resources :groups, only: [:create]
         resources :users, only: [:create]
         post 'assign_group_user'

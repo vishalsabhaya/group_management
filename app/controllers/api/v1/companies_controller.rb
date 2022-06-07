@@ -10,10 +10,9 @@ class Api::V1::CompaniesController < ApplicationController
     render UserGroupCreator.new(params).call
   end
 
-  private
-
-  def create_params
-    params.require(:company).permit(:code)
+  # delete
+  def destroy
+    render CompanyDeletor.new(params).call
   end
 
 end
