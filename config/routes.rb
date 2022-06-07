@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :companies, only: [:create] do
         resources :groups, only: [:create]
         resources :users, only: [:create]
+        post 'assign_group_user'
       end
     end
   end
