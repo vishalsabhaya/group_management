@@ -3,6 +3,8 @@ class User < ApplicationRecord
   USER_LIMIT = 10
   MIN_AGE = 18
   belongs_to :company
+  has_many :group_users
+  has_many :groups, through: :group_users
   validates :email, presence: true, uniqueness: { scope: :company }, length: { maximum: 320 }, format: { with: VALID_EMAIL_REGEX}
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }

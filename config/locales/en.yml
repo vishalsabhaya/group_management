@@ -32,6 +32,8 @@
 en:
   E0001: 'Exceeded user limit'
   E0002: 'You should be over 18 years old.'
+  E0003: 'Invalid User Id'
+  E0004: 'Invalid Group Id'
 
   errors:
     messages:

@@ -5,6 +5,11 @@ class Api::V1::CompaniesController < ApplicationController
     render CompanyCreator.new(params).call
   end
 
+  # Assign user to group for specific company
+  def assign_group_user
+    render UserGroupCreator.new(params).call
+  end
+
   private
 
   def create_params
