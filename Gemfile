@@ -41,6 +41,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Rspec testing
   gem 'rspec-rails', '~> 4.0'
+
+  # Pagination
+  gem 'pagy'
+
   # DB factory creator
   gem 'factory_bot_rails'
   # API documentation
