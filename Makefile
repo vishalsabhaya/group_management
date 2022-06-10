@@ -1,8 +1,6 @@
 docker_build:
 	@docker-compose build
 	@docker-compose up -d
-	@docker-compose exec app bundle exec rails db:setup
-	@docker-compose exec app bundle exec rails db:migrate
 
 start:
 	@docker-compose start
