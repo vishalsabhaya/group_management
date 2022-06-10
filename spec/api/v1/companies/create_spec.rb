@@ -3,36 +3,35 @@ require 'api_helper'
 
 # rubocop:disable RSpec/EmptyExampleGroup
   resource 'Companies' do
-    explanation 'Create Company'
+    explanation 'Create a company using code'
 
     header 'Accept', 'application/json'
     header 'Content-type', 'application/json'
+    describe 'POST group' do
+      let!(:admin_user) {create(:admin_user,email:"test@gmail.com",password:'DbdDiMSO#nwi8@')}
 
-    post '/api/v1/companies' do
-      with_options company: :company do
-        parameter :code, 'uniq code for company', type: :string, required: true
+      before do
+        post "/api/v1/auth/login", params: {
+          email:"test@gmail.com", password: "DbdDiMSO#nwi8@"
+        }
+        expect(response.status).to eq(200)
+        @token = JSON.parse(response.body)['token']
       end
 
-      context 'with 200 status' do
-        let(:code) { 'text-code' }
-
-        example_request 'Creating a company' do
-          expect(status).to eq(200)
-        end
+      scenario 'valid Company input' do
+        post "/api/v1/companies", headers:{ Authorization:  @token}, params: {
+          company:{ code:"text-code"}
+        }
+        expect(response.status).to eq(200)
       end
 
-      context 'with 400 status' do
-        let(:code) { 'test***' }
-
-        example_request 'Creating a company - errors' do
-          json = JSON.parse(response_body)
-
-          expect(status).to eq(400)
-          expect(json['errors']).to include({
-                                              'code' => 400024, 'message' => "is invalid", 'field' => 'code'
-                                            })
-        end
+      scenario 'Creating a company - errors' do
+        post "/api/v1/companies", headers:{ Authorization:  @token}, params: {
+          company:{ code:"test***"}
+        }
+        expect(response.status).to eq(400)
       end
+
     end
   end
 # rubocop:enable RSpec/EmptyExampleGroup

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      post '/auth/login', to: 'authentication#login'
       resources :companies, only: [:create, :destroy] do
         resources :groups, only: [:index, :create]
         resources :users, only: [:create]

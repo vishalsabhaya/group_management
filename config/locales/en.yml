@@ -34,6 +34,7 @@ en:
   E0002: 'You should be over 18 years old.'
   E0003: 'Invalid User Id'
   E0004: 'Invalid Group Id'
+  E0005: 'unauthorized'
 
   errors:
     messages:
