@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   db:
-    image: postgres:13-alpine
+    image: postgres:14.3
     command: ["postgres", "-c", "fsync=false", "-c", "full_page_writes=off"]
     environment:
       POSTGRES_PASSWORD: postgres

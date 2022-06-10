@@ -2,6 +2,7 @@
 require 'api_helper'
 
 # rubocop:disable RSpec/EmptyExampleGroup
+RSpec.describe "Companies", type: :request do
   resource 'Companies' do
     explanation 'Create a company using code'
 
@@ -34,4 +35,5 @@ require 'api_helper'
 
     end
   end
+end
 # rubocop:enable RSpec/EmptyExampleGroup
