@@ -1,7 +1,9 @@
 class Api::V1::GroupsController < ApplicationController
   include Pagy::Backend
   DEFAULT_PAGE = 1
+
   # list out group information with user count
+  # GET /api/v1/companies/:company_id/groups
   def index
     if company.nil?
       render raise ActiveRecord::RecordNotFound
@@ -25,7 +27,7 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
-  # POST
+  # POST   /api/v1/companies/:company_id/groups
   def create
     render GroupCreator.new(params).call
   end

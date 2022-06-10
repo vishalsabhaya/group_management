@@ -30,6 +30,7 @@ class ApplicationController < ActionController::API
            json: { errors: error.errors_for_response }
   end
 
+  # catch Error & return error
   def build_custom_error(exception)
     klass = CUSTOM_API_ERRORS[exception.class]
 
@@ -40,6 +41,7 @@ class ApplicationController < ActionController::API
     end
   end
 
+  # Authorize token & serve API output
   def authenticate_request
     header = request.headers["Authorization"]
     if header
@@ -47,7 +49,8 @@ class ApplicationController < ActionController::API
       decoded = jwt_decode(header)
       @current_user = AdminUser.find(decoded[:user_id])
     else
-      render json: {error: I18n.t("E0005")}, status: :unauthorized
+      render status: :unauthorized,
+             json: {error: I18n.t("E0005")}
     end
   end
 
