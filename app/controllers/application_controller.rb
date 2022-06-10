@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  include JsonWebToken
+  before_action :authenticate_request
   # NOTE: Aside from these exceptions, error control flow should be
   # managed via conditional rendering. (e.g: Using if-else statements. NOT by raise)
   CUSTOM_API_ERRORS = {
@@ -37,4 +39,16 @@ class ApplicationController < ActionController::API
       InternalServerError.new(request_id: request.request_id)
     end
   end
+
+  def authenticate_request
+    header = request.headers["Authorization"]
+    if header
+      header = header.split(" ").last
+      decoded = jwt_decode(header)
+      @current_user = AdminUser.find(decoded[:user_id])
+    else
+      render json: {error: I18n.t("E0005")}, status: :unauthorized
+    end
+  end
+
 end

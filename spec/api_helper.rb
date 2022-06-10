@@ -19,7 +19,7 @@ RspecApiDocumentation.configure do |config|
   config.response_headers_to_include = ['Content-Type']
 
   # Change the name of the API on index pages
-  config.api_name = 'Top Score Ranking - API Documentation'
+  config.api_name = 'Group Management - API Documentation'
   config.request_body_formatter = proc do |body|
     JSON.pretty_generate(body)
   end
